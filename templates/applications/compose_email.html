@@ -1,0 +1,55 @@
+{% extends 'core/event.html' %}
+{% load static applications_tags rev %}
+
+{% block custom_js %}<script type="text/javascript" src="{% static_rev 'js/applications.js' %}"></script>{% endblock %}
+
+{% block title %}{{ event.page_title }}{% endblock %}
+{% block description %}{{ event.page_description }}{% endblock %}
+
+{% block content %}
+<div class="container public-form">
+  <div class="row">
+    <div class="col-md-12" style="padding: 0px">
+      <h3 class="page-header">
+        Edit email for {{ event.page_title }}
+      </h3>
+
+      <div class="col-md-7 stretch-form">
+        <div class="rsvp-buttons">
+          <a class="btn small" data-option="yes">Add a "RSVP: yes" link to email</a>
+          <a class="btn small" data-option="no">Add a "RSVP: no" link to email</a>
+          <a href="" target="_blank">What's that?</a>
+        </div>
+
+        <form action="" method="post">
+          {% csrf_token %}
+          {% include 'includes/_form.html' %}
+
+          {% if not email.sent %}
+          <input type="submit" name="save" value="Save for later" />
+          <input type="submit" name="send" value="Save & send to recipients" />
+          {% endif %}
+        </form>
+      </div>
+      <div class="col-md-5">
+          {% if not email.sent %}
+              <h4>Email preview</h4>
+              <div id="preview" style="white-space: pre-wrap;">{{ email.text|safe }}</div>
+          {% else %}
+              <p>
+                  This email was sent on {{ email.sent }} by {{ email.author }} to {{ email.number_of_recipients }} recipients.
+              </p>
+              <p>
+                  <b>Successfully sent emails:</b> {{ email.successfuly_sent }}
+              </p>
+              <p>
+                  <b>Emails that failed to sent:</b> {{ email.failed_to_sent }}
+              </p>
+
+          {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

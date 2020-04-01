@@ -1,0 +1,68 @@
+<footer>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-2">
+                <p>Django Girls</p>
+                <ul>
+                    <li><a href="{% url 'core:faq' %}">FAQ</a></li>
+                    <li><a href="{% url 'core:foundation' %}">Foundation</a></li>
+                    <li><a href="{% url 'core:newsletter' %}">Newsletter</a></li>
+                    <li><a href="http://gitter.im/DjangoGirls/tutorial"><strong>Chat with us!</strong></a></li>
+                    <li><a href="{% url 'core:coc' %}">Code of Conduct</a></li>
+                    <li><a href="{% url 'contact:contact' %}">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <p>Support us</p>
+                <ul>
+                    <li><a href="{% url 'core:donate' %}">Make a donation</a></li>
+                    <li><a href="https://www.patreon.com/djangogirls">Donate on Patreon</a></li>
+                    <li><a href="{% url 'core:contribute' %}">Contribute</a></li>
+                    <li><a href="https://www.stickermule.com/user/1068790133/stickers">Buy a sticker</a></li>
+                    <li><a href="https://goo.gl/P9YbdI">Sponsor us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <p>Community</p>
+                <ul>
+                    <li><a href="http://facebook.com/djangogirls">Facebook</a></li>
+                    <li><a href="http://twitter.com/djangogirls">Twitter</a></li>
+                    <li><a href="http://github.com/djangogirls">Github</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <p>Resources</p>
+                <ul>
+                    <li><a href="http://tutorial.djangogirls.org/">Tutorial</a></li>
+                    <li><a href="http://organize.djangogirls.org/">Organizer's Manual</a></li>
+                    <li><a href="http://coach.djangogirls.org/">Coaching Guide</a></li>
+                    <li><a href="https://tutorial-extensions.djangogirls.org">Tutorial Extensions</a></li>
+                    <li><a href="https://github.com/DjangoGirls/resources">Graphics</a></li>
+                </ul>
+            </div>
+
+             <div class="col-md-2">
+                <p>Website</p>
+                <ul>
+                    <li><a href="{% url 'core:terms-conditions' %}">Terms & Conditions</a></li>
+                    <li><a href="{% url 'core:privacy-cookies' %}">Privacy & Cookies</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <p>♥</p>
+                <ul>
+                    <li><b>{{ future_events_count }}</b> upcoming events</li>
+                    <li><b>{{ past_events_count }}</b> past events</li>
+                    <li><b>{{ applicants_sum|default_if_none:'0' }}</b> applicants</li>
+                    <li><b>{{ attendees_sum|default_if_none:'0' }}</b> attendees</li>
+                    <li><b>{{ countries_count }}</b> countries</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</footer>

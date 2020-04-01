@@ -1,0 +1,9 @@
+[run]
+source = .
+branch = True
+omit =
+    **/migrations/*
+	**/tests/*
+    .venv
+    djangogirls/wsgi.py
+    manage.py

@@ -1,0 +1,54 @@
+{% extends 'event/base.html' %}
+{% load thumbnail %}
+
+{% block title %}{{ event.page_title }}{% endblock %}
+{% block description %}{{ event.page_description }}{% endblock %}
+{% block custom_css %}
+{% if event.page_custom_css %}
+    <style>
+        {{ event.page_custom_css }}
+    </style>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+    {% if messages or not event.is_page_live %}
+    <div class="container messages">
+        <div class="row">
+
+            {% if not event.is_page_live %}
+            <div class="alert alert-info" role="alert">Hi there! You can see this page because you're logged in admin. When you want to make it public, go to <a href="/admin/core/event/{{ event.pk }}/change/">your website section in the admin</a> and click on 'Is live'.</div>
+            {% endif %}
+
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% for item in content %}
+
+        {% include 'includes/item.html' with item=item %}
+
+    {% endfor %}
+
+    <div class="container event-static-footer">
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                  Participants need to follow the <a href="{% url 'core:coc'%}">Django Girls Code of Conduct</a>.
+                </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <p>
+                  Contact organizers: <a href="mailto:{{ event.email }}">{{ event.email }}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
